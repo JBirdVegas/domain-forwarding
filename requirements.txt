@@ -1,1 +1,4 @@
--e .
+aws-cdk.aws-apigateway
+aws-cdk.aws-certificatemanager
+aws-cdk.aws-lambda
+aws-cdk.aws-route53-targets
