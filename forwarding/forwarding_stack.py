@@ -10,7 +10,6 @@ from aws_cdk import (core,
 class Config:
     def __init__(self, domain_name, zone_id, redirect_url):
         self.domain_name = domain_name
-        self.zone_name = domain_name.split('.')[0]
         self.zone_id = zone_id
         self.redirect_url = redirect_url
 
@@ -26,7 +25,7 @@ class ForwardingStack(core.Stack):
                                                   allow_origins=['*'])
         certificate = cert_manager.DnsValidatedCertificate(
             self,
-            f'domain_cert_for_{config.zone_name}',
+            f'domain_cert_for_{config.domain_name.split(".")[0]}',
             domain_name=config.domain_name,
             hosted_zone=hosted_zone,
             validation_method=cert_manager.ValidationMethod.DNS)
