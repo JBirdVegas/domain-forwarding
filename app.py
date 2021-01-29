@@ -1,22 +1,18 @@
 #!/usr/bin/env python3
+import json
 
 from aws_cdk import core
 
 from forwarding.forwarding_stack import ForwardingStack, Config
 
-the_stanford_girls = core.App()
-wall_street_betz = core.App()
+with open('configuration.json', 'r') as _configs:
+    forwards = json.loads(_configs.read())
 
-ForwardingStack(the_stanford_girls, "theStanfordGirlsForwarding", Config(
-    domain_name='thestanfordgirls.com',
-    zone_id='Z0681220185CG6SLGWTT7',
-    redirect_url='https://poshmark.com/closet/hbstanford'
-))
-ForwardingStack(wall_street_betz, "wallstreetbetzForwarding", Config(
-    domain_name='wallstreetbetz.com',
-    zone_id='Z02346722ZLQ8556O63VJ',
-    redirect_url='https://www.reddit.com/r/wallstreetbets/'
-))
-
-the_stanford_girls.synth()
-wall_street_betz.synth()
+for domain_forward in forwards:
+    app = core.App(auto_synth=True)
+    ForwardingStack(app, domain_forward.get("app_name"), Config(
+        domain_name=domain_forward.get('domain_name'),
+        zone_id=domain_forward.get('zone_id'),
+        redirect_url=domain_forward.get('redirect_url')
+    ))
+    app.synth()

@@ -1,0 +1,14 @@
+[
+    {
+        "app_name": "theStanfordGirlsForwarding",
+        "domain_name": "thestanfordgirls.com",
+        "zone_id": "Z0681220185CG6SLGWTT7",
+        "redirect_url": "https://poshmark.com/closet/hbstanford"
+    },
+    {
+        "app_name": "wallstreetbetzForwarding",
+        "domain_name": "wallstreetbetz.com",
+        "zone_id": "Z02346722ZLQ8556O63VJ",
+        "redirect_url": "https://www.reddit.com/r/wallstreetbets/"
+    }
+]
